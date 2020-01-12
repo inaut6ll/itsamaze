@@ -8,7 +8,7 @@ public class Maze
     private static String file;
     private int numRows;
     private int numCols;
-    private int[ ][ ] maze;
+    private String[][] maze;
     private static Scanner in;
     private static BufferedWriter out;
 
@@ -92,6 +92,29 @@ public class Maze
     public void printMaze() {
         numRows = Integer.parseInt(Maze.readString());
         numCols = Integer.parseInt(Maze.readString());
+        maze = new String[numRows][numCols];
+        String line = Maze.readString();
+        int tempRow = Integer.parseInt(line.substring(0, line.indexOf(" ")).trim());
+        int tempCol = Integer.parseInt(line.substring(line.indexOf(" ")).trim());
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                if (tempRow == row && tempCol == col) { 
+                    maze[row][col] = "O";
+                    line = Maze.readString();
+                    tempRow = Integer.parseInt(line.substring(0, line.indexOf(" ")).trim());
+                    tempCol = Integer.parseInt(line.substring(line.indexOf(" ")).trim());
+                }else {
+                    maze[row][col] = "L";
+                }
+            }
+        }
+        
+        for (String[] row: maze) {
+            for (String val: row) {
+                System.out.print(val);
+            }
+            System.out.println("");
+        }
     }
     
     public boolean isSolvable() {
