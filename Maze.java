@@ -3,23 +3,20 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 
-public class MazeFile1  
+public class Maze 
 {
-    private static final String DATA_FILE = "maze1.txt";
-
+    private static String file;
     private static Scanner in;
     private static BufferedWriter out;
 
-    /**
-     * Opens a file to be used for input (if not already open),
-     * reads a line from the file, and returns the entire line of data.
-     * 
-     * @return a line of text from the input file
-     */
+    public Maze(String file) {
+        this.file = file;
+    }
+    
     public static String readString() {
         if (in == null) {
             try {
-                in = new Scanner(new File(DATA_FILE));
+                in = new Scanner(new File(file));
             }
             catch (Exception e) {
                 System.err.println("Cannot open file for input!");
@@ -43,17 +40,10 @@ public class MazeFile1
 
     }
 
-    /**
-     * Opens a file to be used for output (if not already open),
-     * writes a string to the file and writes a newline.
-     * 
-     * @params The string text to be written. Follwing the string, a newline is added to the file.
-     */
-
     public static void writeString(String s) {
         if (out == null) {
             try {
-                out = new BufferedWriter(new FileWriter(DATA_FILE));
+                out = new BufferedWriter(new FileWriter(file));
             }
             catch (Exception e) {
                 System.err.println("Cannot create file for output!");
@@ -73,12 +63,6 @@ public class MazeFile1
 
     }
 
-    /**
-     * Saves and closes the file (when opened for either input or output). 
-     * 
-     * Note: If the program terminates before the file is closed,
-     * no data will be saved or written to the file.
-     */
     public static void saveAndClose() {
         if (in != null) {
             try {
@@ -100,5 +84,13 @@ public class MazeFile1
                 e.printStackTrace();
             }
         }
+    }
+    
+    public boolean isSolvable() {
+        return true;
+    }
+    
+    public static void main() {
+        Maze.readString();
     }
 }
