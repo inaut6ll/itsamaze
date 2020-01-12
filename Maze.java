@@ -89,9 +89,17 @@ public class Maze
         }
     }
     
+    
+    String a;
+    public void read() {
+        while ((a = Maze.readString()) != null) {
+            System.out.println(a);
+        }
+    }
+    
     public void printMaze() {
-        numRows = Integer.parseInt(Maze.readString());
-        numCols = Integer.parseInt(Maze.readString());
+        numRows = Integer.parseInt(Maze.readString().trim());
+        numCols = Integer.parseInt(Maze.readString().trim());
         maze = new String[numRows][numCols];
         String line = Maze.readString();
         int tempRow = Integer.parseInt(line.substring(0, line.indexOf(" ")).trim());
