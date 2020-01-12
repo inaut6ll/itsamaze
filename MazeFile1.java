@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 
-public class MazeFile  
+public class MazeFile1  
 {
     private static final String DATA_FILE = "maze1.txt";
 

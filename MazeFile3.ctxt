@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.target=MazeFile
+comment0.target=MazeFile3
 comment1.params=
 comment1.target=java.lang.String\ readString()
 comment1.text=\r\n\ Opens\ a\ file\ to\ be\ used\ for\ input\ (if\ not\ already\ open),\r\n\ reads\ a\ line\ from\ the\ file,\ and\ returns\ the\ entire\ line\ of\ data.\r\n\ \r\n\ @return\ a\ line\ of\ text\ from\ the\ input\ file\r\n
