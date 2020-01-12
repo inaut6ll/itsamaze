@@ -91,19 +91,21 @@ public class Maze
     
     
     String a;
-    public void read() {
+    public void read() { //no problems
         while ((a = Maze.readString()) != null) {
             System.out.println(a);
         }
+        Maze.saveAndClose();
     }
     
     public void printMaze() {
-        numRows = Integer.parseInt(Maze.readString().trim());
+        numRows = Integer.parseInt(Maze.readString().trim()); 
         numCols = Integer.parseInt(Maze.readString().trim());
         maze = new String[numRows][numCols];
         String line = Maze.readString();
         int tempRow = Integer.parseInt(line.substring(0, line.indexOf(" ")).trim());
         int tempCol = Integer.parseInt(line.substring(line.indexOf(" ")).trim());
+        System.out.println(line + " " + tempRow + " " + tempCol);
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 if (tempRow == row && tempCol == col) { 
@@ -111,11 +113,13 @@ public class Maze
                     line = Maze.readString();
                     tempRow = Integer.parseInt(line.substring(0, line.indexOf(" ")).trim());
                     tempCol = Integer.parseInt(line.substring(line.indexOf(" ")).trim());
+                    System.out.println(line + " " + tempRow + " " + tempCol);
                 }else {
                     maze[row][col] = "L";
                 }
             }
         }
+        Maze.saveAndClose();
         
         for (String[] row: maze) {
             for (String val: row) {
