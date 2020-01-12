@@ -6,6 +6,9 @@ import java.io.BufferedWriter;
 public class Maze 
 {
     private static String file;
+    private int numRows;
+    private int numCols;
+    private int[ ][ ] maze;
     private static Scanner in;
     private static BufferedWriter out;
 
@@ -86,11 +89,12 @@ public class Maze
         }
     }
     
-    public boolean isSolvable() {
-        return true;
+    public void printMaze() {
+        numRows = Integer.parseInt(Maze.readString());
+        numCols = Integer.parseInt(Maze.readString());
     }
     
-    public static void main() {
-        Maze.readString();
+    public boolean isSolvable() {
+        return true;
     }
 }
