@@ -19,7 +19,7 @@ public class Driver
         System.out.println("Maze 3: ");
         Maze maze3 = new Maze("maze3.txt");
         maze3.read();
-        //maze3.printMaze();
+        maze3.printMaze();
         maze3.isSolvable();
     }
 }
