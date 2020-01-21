@@ -6,9 +6,9 @@ import java.io.BufferedWriter;
 public class Maze 
 {
     private static String file;
-    private int numRows;
-    private int numCols;
-    private String[][] maze;
+    private static int numRows;
+    private static int numCols;
+    private static String[][] maze;
     private static Scanner in;
     private static BufferedWriter out;
 
@@ -98,20 +98,20 @@ public class Maze
         // Maze.saveAndClose();
     // }
     
-    public int getNumRows() {
+    public static int getNumRows() {
         numRows = Integer.parseInt(Maze.readString().trim()); 
         Maze.saveAndClose();
         return numRows;
     }
     
-    public int getNumCols() {
+    public static int getNumCols() {
         Maze.readString();
         numCols = Integer.parseInt(Maze.readString().trim()); 
         Maze.saveAndClose();
         return numRows;
     }
     
-    public String[][] getMaze() {
+    public static String[][] getMaze() {
         maze = new String[numRows][numCols];
         return maze;
     }
@@ -156,15 +156,35 @@ public class Maze
         }
     }
     
+    public static boolean atEdge(int row, int col) {
+        if (row < 0 || row >= maze.length || col < 0 || col >= maze[0].length) {
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean atWall(int row, int col) {
+        if (maze[row][col].equals("F")) {
+            return true;
+        }
+        return false;
+    }
     
     public boolean isSolvable(int startR, int startC, String[][] mazeAry) {
-      if (start >= nums.length) {
-          if (target == 0) {
-            return true;
+      
+      if (Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC)) { //up
+          if (Maze.atEdge(startR + 1, startC) || Maze.atWall(startR + 1, startC)) { //down
+            if (Maze.atEdge(startR, startC + 1) || Maze.atWall(startR, startC + 1)) { //right
+                if (Maze.atEdge(startR, startC - 1) || Maze.atWall(startR, startC - 1)) { //left
+                   if (startR == maze.length - 1 && startC == maze[0].length - 1) {
+                       return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
           }
-          return false;
-      }
-      else {
+      } else {
           if (isSolvable(start + 1, nums, (target - nums[start]))) {
             return true;
           }
