@@ -179,43 +179,55 @@ public class Maze
         return false;
     }
     
+    public static boolean atPath(int row, int col) {
+        if (maze[row][col].equals("P")) {
+            return true;
+        }
+        return false;
+    }
+    
     public boolean isSolvable(int startR, int startC, String[][] mazeAry) {
-      
-      if (Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC)) { //up
-          if (Maze.atEdge(startR + 1, startC) || Maze.atWall(startR + 1, startC)) { //down
-            if (Maze.atEdge(startR, startC + 1) || Maze.atWall(startR, startC + 1)) { //right
-                if (Maze.atEdge(startR, startC - 1) || Maze.atWall(startR, startC - 1)) { //left
-                   if (startR == maze.length - 1 && startC == maze[0].length - 1) {
-                       return true;
-                    } else {
-                       return false;
+          maze[startR][startC] = "P";
+          if (Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC) || Maze.atPath(startR - 1, startC)) { //up
+              System.out.println("exists");
+              if (Maze.atEdge(startR, startC + 1) || Maze.atWall(startR, startC + 1) || Maze.atPath(startR, startC + 1)) { //right
+                  System.out.println("exists");
+                if (Maze.atEdge(startR + 1, startC) || Maze.atWall(startR + 1, startC) || Maze.atPath(startR + 1, startC)) { //down
+                    System.out.println("exists");
+                    if (Maze.atEdge(startR, startC - 1) || Maze.atWall(startR, startC - 1) || Maze.atPath(startR, startC - 1)) { //left
+                        System.out.println("exists");
+                       if (startR == maze.length - 1 && startC == maze[0].length - 1) {
+                           return true;
+                       } else {
+                           return false;
+                       }
                     }
                 }
-            }
-          }
-      } else {
-          if (!(Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC))) { //up
-              if (isSolvable(startR - 1, startC, mazeAry)) {
-                  return true;
               }
-          }
-          if (!(Maze.atEdge(startR + 1, startC) || Maze.atWall(startR + 1, startC))) { //down
-              if (isSolvable(startR + 1, startC, mazeAry)) {
-                  return true;
+          } 
+          else {
+              if (!(Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC) || Maze.atPath(startR - 1, startC))) { //up
+                  if (isSolvable(startR - 1, startC, mazeAry)) {
+                      return true;
+                  }
               }
-          }
-          if (!(Maze.atEdge(startR, startC + 1) || Maze.atWall(startR, startC + 1))) { //right
-              if (isSolvable(startR, startC + 1, mazeAry)) {
-                  return true;
+              if (!(Maze.atEdge(startR, startC + 1) || Maze.atWall(startR, startC + 1) || Maze.atPath(startR, startC + 1))) { //right
+                  if (isSolvable(startR, startC + 1, mazeAry)) {
+                      return true;
+                  }
               }
-          }
-          if (!(Maze.atEdge(startR, startC - 1) || Maze.atWall(startR, startC - 1))) { //left
-              if (isSolvable(startR, startC - 1, mazeAry)) {
-                  return true;
+              if (!(Maze.atEdge(startR + 1, startC) || Maze.atWall(startR + 1, startC) || Maze.atPath(startR + 1, startC))) { //down
+                  if (isSolvable(startR + 1, startC, mazeAry)) {
+                      return true;
+                  }
               }
+              if (!(Maze.atEdge(startR, startC - 1) || Maze.atWall(startR, startC - 1) || Maze.atPath(startR, startC - 1))) { //left
+                  if (isSolvable(startR, startC - 1, mazeAry)) {
+                      return true;
+                  }
+              }
+              return false;
           }
           return false;
-      }
-      return true;
     }
 }

@@ -9,7 +9,10 @@ public class Driver
         maze1.setNumCols();
         maze1.setMaze();
         maze1.printMaze();
-        maze1.isSolvable(0, 0, maze1.getMaze());
+        
+        System.out.println(maze1.atEdge(-1, 0));
+        
+        System.out.println("Solvable: " + maze1.isSolvable(0, 0, maze1.getMaze()));
         System.out.println("");
         
         System.out.println("Maze 2: ");
@@ -19,7 +22,7 @@ public class Driver
         maze2.setNumCols();
         maze2.setMaze();
         maze2.printMaze();
-        maze2.isSolvable(0, 0, maze1.getMaze());
+        System.out.println("Solvable: " + maze2.isSolvable(0, 0, maze1.getMaze()));
         System.out.println("");
         
         System.out.println("Maze 3: ");
@@ -29,6 +32,6 @@ public class Driver
         maze3.setNumCols();
         maze3.setMaze();
         maze3.printMaze();
-        maze3.isSolvable(0, 0, maze1.getMaze());
+        System.out.println("Solvable: " + maze3.isSolvable(0, 0, maze1.getMaze()));
     }
 }
