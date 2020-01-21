@@ -90,18 +90,33 @@ public class Maze
     }
     
     
-    String a;
-    public void read() { //no problems
-        while ((a = Maze.readString()) != null) {
-            System.out.println(a);
-        }
+    // String a;
+    // public void read() { //no problems
+        // while ((a = Maze.readString()) != null) {
+            // System.out.println(a);
+        // }
+        // Maze.saveAndClose();
+    // }
+    
+    public int getNumRows() {
+        numRows = Integer.parseInt(Maze.readString().trim()); 
         Maze.saveAndClose();
+        return numRows;
+    }
+    
+    public int getNumCols() {
+        Maze.readString();
+        numCols = Integer.parseInt(Maze.readString().trim()); 
+        Maze.saveAndClose();
+        return numRows;
+    }
+    
+    public String[][] getMaze() {
+        maze = new String[numRows][numCols];
+        return maze;
     }
     
     public void printMaze() {
-        numRows = Integer.parseInt(Maze.readString().trim()); 
-        numCols = Integer.parseInt(Maze.readString().trim());
-        maze = new String[numRows][numCols];
         
         //blockage = F, free space = O
         String line;
@@ -141,7 +156,22 @@ public class Maze
         }
     }
     
-    public boolean isSolvable() {
-        return true;
+    
+    public boolean isSolvable(int startR, int startC, String[][] mazeAry) {
+      if (start >= nums.length) {
+          if (target == 0) {
+            return true;
+          }
+          return false;
+      }
+      else {
+          if (isSolvable(start + 1, nums, (target - nums[start]))) {
+            return true;
+          }
+          if (isSolvable(start + 1, nums, target)) { 
+            return true;
+          }
+          return false;
+      }
     }
 }
