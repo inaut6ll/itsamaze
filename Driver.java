@@ -10,8 +10,6 @@ public class Driver
         maze1.setMaze();
         maze1.printMaze();
         
-        System.out.println(maze1.atEdge(-1, 0));
-        
         System.out.println("Solvable: " + maze1.isSolvable(0, 0, maze1.getMaze()));
         System.out.println("");
         

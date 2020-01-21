@@ -188,22 +188,15 @@ public class Maze
     
     public boolean isSolvable(int startR, int startC, String[][] mazeAry) {
           maze[startR][startC] = "P";
-          if (Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC) || Maze.atPath(startR - 1, startC)) { //up
-              System.out.println("exists");
-              if (Maze.atEdge(startR, startC + 1) || Maze.atWall(startR, startC + 1) || Maze.atPath(startR, startC + 1)) { //right
-                  System.out.println("exists");
-                if (Maze.atEdge(startR + 1, startC) || Maze.atWall(startR + 1, startC) || Maze.atPath(startR + 1, startC)) { //down
-                    System.out.println("exists");
-                    if (Maze.atEdge(startR, startC - 1) || Maze.atWall(startR, startC - 1) || Maze.atPath(startR, startC - 1)) { //left
-                        System.out.println("exists");
-                       if (startR == maze.length - 1 && startC == maze[0].length - 1) {
-                           return true;
-                       } else {
-                           return false;
-                       }
-                    }
-                }
-              }
+          if ((Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC) || Maze.atPath(startR - 1, startC))
+                && (Maze.atEdge(startR, startC + 1) || Maze.atWall(startR, startC + 1) || Maze.atPath(startR, startC + 1)) 
+                && (Maze.atEdge(startR + 1, startC) || Maze.atWall(startR + 1, startC) || Maze.atPath(startR + 1, startC))
+                && (Maze.atEdge(startR, startC - 1) || Maze.atWall(startR, startC - 1) || Maze.atPath(startR, startC - 1))) { 
+                   if (startR == maze.length - 1 && startC == maze[0].length - 1) {
+                       return true;
+                   } else {
+                       return false;
+                   }
           } 
           else {
               if (!(Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC) || Maze.atPath(startR - 1, startC))) { //up
@@ -228,6 +221,5 @@ public class Maze
               }
               return false;
           }
-          return false;
     }
 }
