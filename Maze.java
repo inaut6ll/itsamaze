@@ -97,28 +97,37 @@ public class Maze
         // }
         // Maze.saveAndClose();
     // }
-    
-    public static int getNumRows() {
+    public static void setNumRows() {
         numRows = Integer.parseInt(Maze.readString().trim()); 
         Maze.saveAndClose();
+    }
+    
+    public static int getNumRows() {
         return numRows;
     }
     
-    public static int getNumCols() {
+    public static void setNumCols() {
         Maze.readString();
         numCols = Integer.parseInt(Maze.readString().trim()); 
         Maze.saveAndClose();
+    }
+    
+    public static int getNumCols() {
         return numRows;
     }
     
-    public static String[][] getMaze() {
+    public static void setMaze() {
         maze = new String[numRows][numCols];
+    }
+    
+    public static String[][] getMaze() {
         return maze;
     }
     
     public void printMaze() {
-        
         //blockage = F, free space = O
+        Maze.readString();
+        Maze.readString();
         String line;
         while ((line = Maze.readString()) != null) {
             
@@ -179,19 +188,34 @@ public class Maze
                    if (startR == maze.length - 1 && startC == maze[0].length - 1) {
                        return true;
                     } else {
-                        return false;
+                       return false;
                     }
                 }
             }
           }
       } else {
-          if (isSolvable(start + 1, nums, (target - nums[start]))) {
-            return true;
+          if (!(Maze.atEdge(startR - 1, startC) || Maze.atWall(startR - 1, startC))) { //up
+              if (isSolvable(startR - 1, startC, mazeAry)) {
+                  return true;
+              }
           }
-          if (isSolvable(start + 1, nums, target)) { 
-            return true;
+          if (!(Maze.atEdge(startR + 1, startC) || Maze.atWall(startR + 1, startC))) { //down
+              if (isSolvable(startR + 1, startC, mazeAry)) {
+                  return true;
+              }
+          }
+          if (!(Maze.atEdge(startR, startC + 1) || Maze.atWall(startR, startC + 1))) { //right
+              if (isSolvable(startR, startC + 1, mazeAry)) {
+                  return true;
+              }
+          }
+          if (!(Maze.atEdge(startR, startC - 1) || Maze.atWall(startR, startC - 1))) { //left
+              if (isSolvable(startR, startC - 1, mazeAry)) {
+                  return true;
+              }
           }
           return false;
       }
+      return true;
     }
 }
